@@ -15,4 +15,4 @@ RUN npx playwright install chrome
 EXPOSE 8931
 
 # Run MCP / SSE
-CMD ["npx", "@playwright/mcp", "--port", "8931"]
+CMD ["npx", "@playwright/mcp", "--isolated", "--no-sandbox", "--port", "8931"]
