@@ -1,18 +1,8 @@
-FROM node:slim
+# Start from the official Playwright MCP image
+FROM mcr.microsoft.com/playwright/mcp
 
-# Dependencies
-# Install required packages for Playwright and Chromium
-RUN apt-get update && \
-    apt-get install -y wget gnupg ca-certificates fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 \
-    libatk1.0-0 libcups2 libdbus-1-3 libgdk-pixbuf2.0-0 libnspr4 libnss3 libx11-xcb1 libxcomposite1 libxdamage1 \
-    libxrandr2 xdg-utils libu2f-udev libvulkan1 && \
-    rm -rf /var/lib/apt/lists/*
 
-# Install chrome
-RUN npx playwright install chrome
-
-# Expose the port the app listens on
-EXPOSE 8931
-
-# Run MCP / SSE
-CMD ["npx", "@playwright/mcp", "--no-sandbox", "--port", "8931"]
+CMD ["--port=8931", \
+     "--isolated", \
+     "--no-sandbox", \
+     "--headless"]
