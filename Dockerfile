@@ -3,6 +3,6 @@ FROM mcr.microsoft.com/playwright/mcp
 
 
 CMD ["--port=8931", \
-     "--isolated", \
+     "--user-data-dir=/ms-playwright/mcp-profile", \
      "--no-sandbox", \
      "--headless"]
